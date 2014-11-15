@@ -1,7 +1,7 @@
 <?PHP
 
 if ($_GET['color'] == ''){
-  $_GET['color'] = 'blue';
+  $_GET['color'] = 'white';
 }
 
 ?>
@@ -14,7 +14,7 @@ if ($_GET['color'] == ''){
 
 </head>
 <body>
-<b><i><font color="<?PHP echo $_GET['color']; ?>"><font size=9><center>Ahoy mateys!!!</center></font></fo$
+<b><i><font color="<?PHP echo $_GET['color']; ?>"><font size=9><center>Only you can hear me, Summoner.</center></font>
 <script src="script.js"></script>
 
 Hello
@@ -23,6 +23,26 @@ Hello
 echo $_GET["name"];
 
 ?>
+<br><Br><br>
+<pre>
+<?PHP
 
+
+require 'vendor/autoload.php';
+use LeagueWrap\Api;
+
+$api = new Api('3c89c9d9-6196-463b-9c7b-2ef2f83540f8');
+
+$summonerAPI = $api->summoner();
+
+$name = $_GET['name'];
+
+$summoner = $summonerAPI->info($name);
+
+print_r($summoner);
+
+
+?>
+</pre>
 </body>
 </html>
