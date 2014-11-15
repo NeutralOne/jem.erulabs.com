@@ -28,6 +28,12 @@ echo $_GET["name"];
 <?PHP
 
 
+require 'championlist.php';
+
+print_r($champions);
+
+exit();
+
 require 'vendor/autoload.php';
 use LeagueWrap\Api;
 
@@ -39,7 +45,8 @@ $name = $_GET['name'];
 
 $summoner = $summonerAPI->info($name);
 
-print_r($summoner);
+print_r($champions);
+#print_r($summoner);
 
 
 ?>
