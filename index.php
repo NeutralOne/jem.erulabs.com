@@ -41,7 +41,6 @@ require 'championlist.php';
 
 print_r($champions);
 
-exit();
 
 require 'vendor/autoload.php';
 use LeagueWrap\Api;
