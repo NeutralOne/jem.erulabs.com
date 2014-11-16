@@ -17,10 +17,19 @@ if ($_GET['color'] == ''){
 <b><i><font color="<?PHP echo $_GET['color']; ?>"><font size=9><center>Only you can hear me, Summoner.</center></font>
 <script src="script.js"></script>
 
+
+<form action="index.php">
+	Name:
+	<br>
+	<input type="text" name="name">
+	<br>
+	<input type="submit" value="submit">
+</form>
+
 Hello
 <?php
 
-echo $_GET["name"];
+echo $_POST["name"];
 
 ?>
 <br><Br><br>
@@ -41,7 +50,7 @@ $api = new Api('3c89c9d9-6196-463b-9c7b-2ef2f83540f8');
 
 $summonerAPI = $api->summoner();
 
-$name = $_GET['name'];
+$name = $_POST['name'];
 
 $summoner = $summonerAPI->info($name);
 
