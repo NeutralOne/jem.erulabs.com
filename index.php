@@ -18,7 +18,7 @@ if ($_GET['color'] == ''){
 <script src="script.js"></script>
 
 
-<form action="index.php">
+<form action="index.php" method="post">
 	Name:
 	<br>
 	<input type="text" name="name">
@@ -54,8 +54,8 @@ $name = $_POST['name'];
 
 $summoner = $summonerAPI->info($name);
 
-print_r($champions);
-#print_r($summoner);
+#print_r($champions);
+print_r($summoner);
 
 
 ?>
