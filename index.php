@@ -31,9 +31,6 @@ Hello
 
 echo $_POST["name"];
 
-if ($_GET['name'] == ''){
-  echo $_POST["Summoner"];
-
 ?>
 <br><Br><br>
 <pre>
