@@ -43,7 +43,7 @@ if ($_POST["name"] ==''){
 
 require 'championlist.php';
 
-print_r($champions);
+#print_r($champions);
 
 
 require 'vendor/autoload.php';
@@ -60,8 +60,22 @@ $summoner = $summonerAPI->info($name);
 
 $recentGames = $gameAPI->recent($summoner->id);
 
-print_r($recentGames->games[0]);
+$gameNum = 1;
 
+$championId = $recentGames->games[$gameNum]->championId;
+
+echo $champions[$championId];
+
+echo " - ";
+
+$won = $recentGames->games[$gameNum]->stats->win;
+
+if ($won == 1){
+  echo "Victory";
+}
+else {
+  echo "Defeat";
+}
 
 ?>
 </pre>
