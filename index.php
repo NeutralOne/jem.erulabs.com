@@ -60,21 +60,25 @@ $summoner = $summonerAPI->info($name);
 
 $recentGames = $gameAPI->recent($summoner->id);
 
-$gameNum = 1;
+foreach ($recentGames->games as $gameNum => $game) {
 
-$championId = $recentGames->games[$gameNum]->championId;
 
-echo $champions[$championId];
+	$championId = $game->championId;
 
-echo " - ";
+	echo $champions[$championId];
 
-$won = $recentGames->games[$gameNum]->stats->win;
+	echo " - ";
 
-if ($won == 1){
-  echo "Victory";
-}
-else {
-  echo "Defeat";
+	$won = $game->stats->win;
+
+	if ($won == 1){
+	  echo "Victory";
+	}
+	else {
+	  echo "Defeat";
+
+	}
+	echo "<br><br>";
 }
 
 ?>
