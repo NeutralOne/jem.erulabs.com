@@ -58,8 +58,9 @@ $name = $_POST['name'];
 
 $summoner = $summonerAPI->info($name);
 
-#print_r($champions);
-print_r($summoner);
+$recentGames = $gameAPI->recent($summoner->id);
+
+print_r($recentGames);
 
 
 ?>
