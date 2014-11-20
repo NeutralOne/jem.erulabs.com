@@ -60,7 +60,7 @@ $summoner = $summonerAPI->info($name);
 
 $recentGames = $gameAPI->recent($summoner->id);
 
-print_r($recentGames);
+print_r($recentGames->games[0]);
 
 
 ?>
