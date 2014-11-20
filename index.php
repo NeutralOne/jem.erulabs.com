@@ -28,8 +28,12 @@ if ($_GET['color'] == ''){
 
 Hello
 <?php
+if ($_POST["name"] ==''){
+	echo "Summoner";
+} else {
+	echo $_POST["name"];
+}
 
-echo $_POST["name"];
 
 ?>
 <br><Br><br>
@@ -48,6 +52,7 @@ use LeagueWrap\Api;
 $api = new Api('3c89c9d9-6196-463b-9c7b-2ef2f83540f8');
 
 $summonerAPI = $api->summoner();
+$gameAPI = $api->game();
 
 $name = $_POST['name'];
 
