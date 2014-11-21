@@ -44,7 +44,7 @@ if ($_POST["name"] ==''){
 require 'championlist.php';
 
 #print_r($champions);
-
+	
 
 require 'vendor/autoload.php';
 use LeagueWrap\Api;
@@ -60,13 +60,41 @@ $summoner = $summonerAPI->info($name);
 
 $recentGames = $gameAPI->recent($summoner->id);
 
+function fixlolnum($lolnumber) {
+	if ($lolnumber == ''){
+	  echo "0";
+	} else {
+	  echo $lolnumber;
+	}
+}
+
+
+function fixlolname($lolname) {
+	$lolname = str_replace(" ", "", $lolname);
+	$lolname = str_replace("'", "", $lolname);
+	return $lolname;
+}
+
+
 foreach ($recentGames->games as $gameNum => $game) {
 
-
 	$championId = $game->championId;
+	
+	$championName = $champions[$championId];
 
-	echo $champions[$championId];
+	echo "<img src='/images/" . fixlolname($championName) . "Square.png'>";	
 
+	echo $championName;
+
+	echo " - ";
+
+	fixlolnum($game->stats->championsKilled);
+	echo "/";
+	fixlolnum($game->stats->numDeaths);
+	echo "/";
+	fixlolnum($game->stats->assists);
+	
+	
 	echo " - ";
 
 	$won = $game->stats->win;
@@ -81,6 +109,8 @@ foreach ($recentGames->games as $gameNum => $game) {
 	echo "<br><br>";
 }
 
+
+#print_r($recentGames->games[0]->stats);
 ?>
 </pre>
 </body>
