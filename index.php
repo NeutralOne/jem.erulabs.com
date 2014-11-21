@@ -81,6 +81,8 @@ foreach ($recentGames->games as $gameNum => $game) {
 	$championId = $game->championId;
 	
 	$championName = $champions[$championId];
+	
+	echo "<!---#$championId--->";
 
 	echo "<img src='/images/" . fixlolname($championName) . "Square.png'>";	
 
@@ -106,7 +108,7 @@ foreach ($recentGames->games as $gameNum => $game) {
 	  echo "Defeat";
 
 	}
-	echo "<br><br>";
+	echo "<br><br>\n\n";
 }
 
 
