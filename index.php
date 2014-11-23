@@ -30,6 +30,7 @@ Hello
 <?php
 if ($_POST["name"] ==''){
 	echo "Summoner";
+	exit();
 } else {
 	echo $_POST["name"];
 }
