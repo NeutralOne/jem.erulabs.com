@@ -62,9 +62,9 @@ $recentGames = $gameAPI->recent($summoner->id);
 
 function fixlolnum($lolnumber) {
 	if ($lolnumber == ''){
-	  echo "0";
+	  return 0;
 	} else {
-	  echo $lolnumber;
+	  return $lolnumber;
 	}
 }
 
@@ -91,11 +91,11 @@ foreach ($recentGames->games as $gameNum => $game) {
 
 	echo " - ";
 
-	fixlolnum($game->stats->championsKilled);
+	echo fixlolnum($game->stats->championsKilled);
 	echo "/";
-	fixlolnum($game->stats->numDeaths);
+	echo fixlolnum($game->stats->numDeaths);
 	echo "/";
-	fixlolnum($game->stats->assists);
+	echo fixlolnum($game->stats->assists);
 	
 	
 	echo " - ";
@@ -103,13 +103,21 @@ foreach ($recentGames->games as $gameNum => $game) {
 	$won = $game->stats->win;
 
 	if ($won == 1){
-	  echo "Victory";
+	  echo "<font color='green'>Victory</font>";
 	}
 	else {
-	  echo "Defeat";
+	  echo "<font color='red'>Defeat</font>";
 
 	}
-	echo "<br><br>\n\n";
+	
+	if (fixlolnum($game->stats->numDeaths) > fixlolnum($game->stats->championsKilled)+4) {
+	  echo " ...Goddamn feeder.";
+	}
+	if ((fixlolnum($game->stats->championsKilled) > fixlolnum($games->stats->numDeaths)+4) && $won == 1) {
+	  echo " ...Good job!";
+	}	
+
+	echo "<br>\n\n";
 }
 
 
