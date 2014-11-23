@@ -72,6 +72,7 @@ function fixlolnum($lolnumber) {
 function fixlolname($lolname) {
 	$lolname = str_replace(" ", "", $lolname);
 	$lolname = str_replace("'", "", $lolname);
+	$lolname = str_replace(".", "", $lolname);
 	return $lolname;
 }
 
