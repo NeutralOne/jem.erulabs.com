@@ -113,7 +113,7 @@ foreach ($recentGames->games as $gameNum => $game) {
 	if (fixlolnum($game->stats->numDeaths) > fixlolnum($game->stats->championsKilled)+4) {
 	  echo " ...Goddamn feeder.";
 	}
-	if ((fixlolnum($game->stats->championsKilled) > fixlolnum($games->stats->numDeaths)+4) && $won == 1) {
+	if ((fixlolnum($game->stats->championsKilled) > fixlolnum($game->stats->numDeaths)+4) && $won == 1) {
 	  echo " ...Good job!";
 	}	
 
