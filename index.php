@@ -118,12 +118,12 @@ foreach ($recentGames->games as $gameNum => $game) {
 	  echo " ...Good job!";
 	}	
 
-	echo "<br>\n\n";
+	echo "<br><br>\n\n";
 }
-foreach ($champions as $championId => $championName) {
-	
-	echo "<img src='/images/" . fixlolname($championName) . "Square.png'>";	
-}
+#foreach ($champions as $championId => $championName) {
+#	
+#	echo "<img src='/images/" . fixlolname($championName) . "Square.png'>";	
+#}
 
 #print_r($recentGames->games[0]->stats);
 ?>
