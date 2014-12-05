@@ -28,7 +28,7 @@ if ($_GET['color'] == ''){
 
 Hello
 <?php
-if ($_POST["name"] ==''){
+if (isset($_POST["name"])){
 	echo "Summoner";
 	exit();
 } else {
