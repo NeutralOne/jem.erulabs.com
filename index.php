@@ -61,6 +61,9 @@ $summoner = $summonerAPI->info($name);
 
 $recentGames = $gameAPI->recent($summoner->id);
 
+echo "<img src='http://avatar.leagueoflegends.com/na/". ($name) . ".png' >" ;
+echo "<br>". ($name) ."'s Past 10 Games: <br> <pre>";
+
 function fixlolnum($lolnumber) {
 	if ($lolnumber == ''){
 	  return 0;
