@@ -1,4 +1,25 @@
 <?PHP
+$connection = mysqli_connect('localhost','jem','sometatas','jemdb');
+if($connection === false) {
+	echo mysqli_connect_error();
+}
+    function db_select($query) {
+	global $connection;
+        $rows = array();
+        $result = mysqli_query($connection, $query);
+
+        // If query failed, return `false`
+        if($result === false) {
+            return false;
+        }
+
+        // If query was successful, retrieve all the rows into an array
+        while ($row = mysqli_fetch_assoc($result)) {
+            $rows[] = $row;
+        }
+        return $rows;
+    }
+
 
 if ($_GET['color'] == ''){
   $_GET['color'] = 'white';
@@ -16,8 +37,41 @@ if ($_GET['color'] == ''){
 <body>
 <b><i><font color="<?PHP echo $_GET['color']; ?>"><font size=9><center>Only you can hear me, Summoner.</center></font>
 <script src="script.js"></script>
+<?PHP
+$result = db_select("SELECT * FROM visitData");
+$found = false;
+$totalVisits = 1;
+//print_r($result);
+foreach ($result as $visitorData) {
+//print_r ($visitorData);	
+	//echo $visitorData["IP"];
+	//echo "<br>";
+	//If this record is for your address
+
+	$totalVisits = $totalVisits + $visitorData["visits"];
+	if ($visitorData["IP"] == $_SERVER['REMOTE_ADDR']) {
+		$found = true;
+	$visits = $visitorData["visits"];
+	}
+	
+}
+if ($found) {
+	//update
+	$visits = $visits+1;
+	$update = mysqli_query($connection, "UPDATE `visitData` SET `visits`=".$visits." WHERE `IP`='".$_SERVER['REMOTE_ADDR']."'");
+}
+else{
+	$visits = 1;
+	$insert = mysqli_query($connection, "INSERT INTO `visitData` (`IP`,`visits`) VALUES ('".$_SERVER['REMOTE_ADDR']."', 1)");
+	//insert
+}
+echo "Your visits: ".$visits." <br>";
+echo "Total visits: ".$totalVisits." <br>";
+echo "Total unique visits: ".count($result)." <br><br>";
 
 
+//echo $_SERVER['REMOTE_ADDR']
+?>
 <form action="index.php" method="post">
 	Name:
 	<br>
