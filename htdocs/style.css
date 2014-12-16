@@ -1,3 +1,24 @@
 body {
 	background-color: #000000;
+	color: white;
 }
+
+td {
+	border: 2px solid white;
+	text-align: center;
+	
+}
+
+.big {
+	font-size: 18px;
+	font-style: bold;
+}
+
+.victory {
+	color: green;
+}
+
+.defeat {
+	color: red;
+}
+

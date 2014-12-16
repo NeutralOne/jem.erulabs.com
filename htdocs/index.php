@@ -1,3 +1,4 @@
+
 <?PHP
 $connection = mysqli_connect('localhost','jem','sometatas','jemdb');
 if($connection === false) {
@@ -21,21 +22,16 @@ if($connection === false) {
     }
 
 
-if ($_GET['color'] == ''){
-  $_GET['color'] = 'white';
-}
-
 ?>
-
+<!DOCTYPE html>
 
 <html>
-
 <head>
 <link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
 <body>
-<b><i><font color="<?PHP echo $_GET['color']; ?>"><font size=9><center>Only you can hear me, Summoner.</center></font>
+<b><i><font color="white"><font size=9><center>Only you can hear me, Summoner.</center></font>
 <script src="script.js"></script>
 <?PHP
 $result = db_select("SELECT * FROM visitData");
@@ -73,7 +69,7 @@ echo "Total unique visits: ".count($result)." <br><br>";
 //echo $_SERVER['REMOTE_ADDR']
 ?>
 <form action="index.php" method="post">
-	Name:
+	Summoner Name:
 	<br>
 	<input type="text" name="name">
 	<br>
@@ -134,40 +130,47 @@ function fixlolname($lolname) {
 	return $lolname;
 }
 
+?>
+<table>
+<tr>
+	<td></td>
+	<td>Stats</td>
+	<td></td>
+</tr>
+<?PHP
 
 foreach ($recentGames->games as $gameNum => $game) {
-
 	$championId = $game->championId;
-	
-	$championName = $champions[$championId];
-	
-	echo "<!---#$championId--->";
+	$championName = $champions[$championId];	
+	echo "<!---#$championId--->\n";
 
+	echo "<tr>";
+	echo "<td>";
 	echo "<img src='/images/" . fixlolname($championName) . "Square.png'>";	
-
+	echo "<br>";
 	echo $championName;
+	echo "</td>";
 
-	echo " - ";
-
+	echo "<td>";
 	echo fixlolnum($game->stats->championsKilled);
 	echo "/";
 	echo fixlolnum($game->stats->numDeaths);
 	echo "/";
 	echo fixlolnum($game->stats->assists);
+	echo "</td>";
 	
-	
-	echo " - ";
 
+	echo "<td>";
 	$won = $game->stats->win;
 
 	if ($won == 1){
-	  echo "<font color='green'>Victory</font>";
+	  echo "<span class='big victory'>Victory</span>";
 	}
 	else {
-	  echo "<font color='red'>Defeat</font>";
+	  echo "<span class='big defeat'>Defeat</span>";
 
 	}
-	
+	echo "<br>";
 	if (fixlolnum($game->stats->numDeaths) > fixlolnum($game->stats->championsKilled)+4) {
 	  echo " ...Goddamn feeder.";
 	}
@@ -175,7 +178,8 @@ foreach ($recentGames->games as $gameNum => $game) {
 	  echo " ...Good job!";
 	}	
 
-	echo "<br><br>\n\n";
+	echo "</td>";
+	echo "</tr>\n\n";
 }
 #foreach ($champions as $championId => $championName) {
 #	
@@ -184,6 +188,7 @@ foreach ($recentGames->games as $gameNum => $game) {
 
 #print_r($recentGames->games[0]->stats);
 ?>
-</pre>
+</table>
+
 </body>
 </html>
