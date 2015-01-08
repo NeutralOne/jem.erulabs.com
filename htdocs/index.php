@@ -189,6 +189,8 @@ foreach ($recentGames->games as $gameNum => $game) {
 #print_r($recentGames->games[0]->stats);
 ?>
 </table>
-
+<?PHP
+require 'comments.php';
+?>
 </body>
 </html>
