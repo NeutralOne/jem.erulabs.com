@@ -27,6 +27,7 @@ if($connection === false) {
 
 <html>
 <head>
+<title>leaguesite</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
@@ -96,7 +97,7 @@ function sanitize($input) {
 if (isset($_POST["commentName"]) && isset($_POST["comment"])) {
 		
 	
-$insert = mysqli_query($connection, "INSERT INTO `comments` (`name`,`words`) VALUES ('".sanitize($_POST['commentName'])."', '".sanitize($_POST['comment'])."')");
+	$insert = mysqli_query($connection, "INSERT INTO `comments` (`name`,`words`) VALUES ('".sanitize($_POST['commentName'])."', '".sanitize($_POST['comment'])."')");
 }
 
 require 'comments.php';
