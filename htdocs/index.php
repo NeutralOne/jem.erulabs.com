@@ -27,7 +27,7 @@ if($connection === false) {
 
 <html>
 <head>
-<title>leaguesite</title>
+<title>LeagueSite</title>
 <link rel="stylesheet" type="text/css" href="style.css">
 
 </head>
