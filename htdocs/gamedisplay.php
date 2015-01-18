@@ -1,7 +1,7 @@
 
 <?PHP
 
-
+require 'secretfile.php';
 require 'championlist.php';
 
 #print_r($champions);
@@ -10,7 +10,7 @@ require 'championlist.php';
 require 'vendor/autoload.php';
 use LeagueWrap\Api;
 
-$api = new Api('3c89c9d9-6196-463b-9c7b-2ef2f83540f8');
+$api = new Api($league_api_key);
 
 $summonerAPI = $api->summoner();
 $gameAPI = $api->game();
