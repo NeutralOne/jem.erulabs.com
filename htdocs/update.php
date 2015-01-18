@@ -1,10 +1,10 @@
 <?PHP
 
-error_reporting(0);
+#error_reporting(0);
 
 require 'secretfile.php';
 
-list($algo, $hash) = explode('=', $_SERVER['X-Hub-Signature']);
+list($algo, $hash) = explode('=', $_SERVER['HTTP_X_HUB_SIGNATURE']);
 $payload = file_get_contents('php://input');
 $data = json_decode($payload);
 
@@ -15,8 +15,8 @@ if ($hash !== $payloadHash) {
   exit;
 }
 
-echo '<pre>';
-echo exec("sudo salt-call --local state.sls base");
-echo '</pre>';
+exec("sudo salt-call --local state.sls base 2>&1", $output);
+
+print_r($output);
 
 ?>
