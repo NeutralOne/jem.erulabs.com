@@ -90,6 +90,7 @@ if (!isset($_POST["name"])){
 }
 
 function sanitize($input) {
+	global $connection;
 	$output = mysqli_real_escape_string($connection, $input);
 	return $output;
 }
