@@ -17,6 +17,7 @@ $gameAPI = $api->game();
 
 $name = $_POST['name'];
 
+$insert = mysqli_query($connection, "INSERT INTO `recentSearches` (`name`) VALUES ('".$name."')");
 $summoner = $summonerAPI->info($name);
 
 $recentGames = $gameAPI->recent($summoner->id);

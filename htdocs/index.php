@@ -76,10 +76,31 @@ echo "Total unique visits: ".count($result)." <br><br>";
 	<br>
 	<input type="submit" value="submit">
 </form>
+<?PHP
+echo "Most recent searches:<br>";
 
+$result = db_select("SELECT DISTINCT name FROM recentSearches ORDER BY id DESC LIMIT 5");
+
+$totalNumberOfNames = count($result);
+// If there is one thing in the list - its id is 0. 2... id 1... etc.
+$positionOfLastItemInList = $totalNumberOfNames - 1;
+
+
+foreach ($result as $recentName) {
+	echo $recentName["name"];
+	//if we are not the last item, add ,
+	if($recentName['name'] != $result[$positionOfLastItemInList]['name']) {
+		echo ", ";
+	}
+};
+
+echo "<br><br>";
+
+?>
 Hello
 <?php
-if (!isset($_POST["name"])){
+// If the "name" isn't set OR it's empty
+if (!isset($_POST["name"]) || empty($_POST["name"])){
 	echo "Summoner";
 	echo "<br><br>";
 	
